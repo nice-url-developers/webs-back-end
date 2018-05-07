@@ -3,9 +3,11 @@ import * as moment from 'moment';
 
 @Component({
   selector: 'nz-datepicker-disable-date',
-  template: `<nz-datepicker [(ngModel)]="_date" [nzPlaceHolder]="'Select date'" [nzDisabledDate]="_disabledDate">
+  template: `
+    
+    <nz-datepicker [(ngModel)]="_date" [nzPlaceHolder]="'Select date'" [nzDisabledDate]="_disabledDate">
   </nz-datepicker>
-  <nz-datepicker [(ngModel)]="_moment" [nzPlaceHolder]="'Select month'" [nzMode]="'month'" [nzDisabledDate]="_disabledMonth" [nzFormat]="'YYYY-MM'"></nz-datepicker><nz-rangepicker [(ngModel)]="_dateRange" [nzDisabledDate]="_disabledDate"></nz-rangepicker>`,
+  `,
   styles  : []
 })
 export class NzDemoDatePickerDisableDateComponent {
