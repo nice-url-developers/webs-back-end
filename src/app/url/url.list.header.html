@@ -1,0 +1,35 @@
+<nz-layout style="background: white">
+  <nz-input-group> <input nz-input placeholder="Basic usage" [(ngModel)]="value">
+    <input nz-input placeholder="Basic usage" [(ngModel)]="value">
+
+    <button nz-button [nzType]="'primary'" (click)="taggleBox()">
+      <i class="anticon anticon-plus-circle-o"></i><span>{{isSpecial ? 'hide' : 'show'}}</span>
+    </button>
+  </nz-input-group>
+
+
+<div id="box" [style.display]="isSpecial ? 'block' : 'none'">
+  {{panels[0].name}}
+</div>
+  <!--<nz-input-group>分类 <nz-tag-->
+    <!--*ngFor="let tag of tags; let i = index;"-->
+    <!--[nzMode]="i === 0 ? 'default' : 'closeable'"-->
+    <!--(nzAfterClose)="handleClose(tag)">-->
+    <!--{{ sliceTagName(tag) }}-->
+  <!--</nz-tag>-->
+    <!--<nz-tag-->
+      <!--*ngIf="!inputVisible"-->
+      <!--class="editable-tag"-->
+      <!--(click)="showInput()">-->
+      <!--<i class="anticon anticon-plus"></i> New Tag-->
+    <!--</nz-tag>-->
+    <!--<input-->
+      <!--#inputElement-->
+      <!--nz-input-->
+      <!--nzSize="small"-->
+      <!--*ngIf="inputVisible" type="text"-->
+      <!--[(ngModel)]="inputValue"-->
+      <!--style="width: 78px;"-->
+      <!--(blur)="handleInputConfirm()"-->
+      <!--(keydown.enter)="handleInputConfirm()"></nz-input-group>-->
+</nz-layout>
