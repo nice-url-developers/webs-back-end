@@ -24,12 +24,14 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import {AppComponent} from './app.component';
 // import {  } from 'ng-zorro-antd';
 import {NzDemoTableAjaxComponent} from './url/url.list';
-import {NzDemoDatePickerDisableDateComponent} from './url/url.list.header.date';
+import { NzUrlListHeaderComponent} from './url/url.list.header.date';
+import {NzUrlFormHorizontalComponent} from './url/url.add';
 @NgModule({
   declarations: [
     AppComponent,
     NzDemoTableAjaxComponent,
-    NzDemoDatePickerDisableDateComponent
+    NzUrlListHeaderComponent,
+    NzUrlFormHorizontalComponent
   ],
   imports: [
     BrowserModule,

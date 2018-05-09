@@ -1,16 +1,33 @@
 <nz-layout style="background: white">
-  <nz-input-group> <input nz-input placeholder="Basic usage" [(ngModel)]="value">
-    <input nz-input placeholder="Basic usage" [(ngModel)]="value">
+  <div nz-row style="padding: 0px 5px 5px 0px">
+    <div nz-col [nzSpan]="6"  >
+      <nz-input  [nzType]="'search'" [nzPlaceHolder]="'搜索名称'" [(ngModel)]="search" style="" (nzOnSearch)="onSearch($event)"></nz-input>
+    </div>
 
-    <button nz-button [nzType]="'primary'" (click)="taggleBox()">
-      <i class="anticon anticon-plus-circle-o"></i><span>{{isSpecial ? 'hide' : 'show'}}</span>
+    <button nz-col [nzSpan]="4" [nzOffset]="13" nz-button [nzType]="'primary'" (click)="taggleBox()">
+      <i class="anticon anticon-plus-circle-o"></i><span>添加</span>
     </button>
-  </nz-input-group>
+  </div>
 
 
-<div id="box" [style.display]="isSpecial ? 'block' : 'none'">
-  {{panels[0].name}}
+<div id="box"  [@heroState]="Boxstate" >
+  <nz-url-form-horizontal></nz-url-form-horizontal>
+  <div nz-col [nzSpan]="12" >
+
+    <nz-input [nzType]="'text'" [nzPlaceHolder]="'Enter your userName'">
+      <ng-template #prefix>
+        <i class="anticon anticon-user"></i>
+      </ng-template>
+    </nz-input>
+
+  <input nz-input placeholder="Basic usage" [(ngModel)]="value">
+  <input nz-input placeholder="Basic usage" [(ngModel)]="value">
+  </div>
+  <div nz-col [nzSpan]="12" >
+
+  </div>
 </div>
+  <!--[style.display]="isSpecial ? 'block' : 'none'"-->
   <!--<nz-input-group>分类 <nz-tag-->
     <!--*ngFor="let tag of tags; let i = index;"-->
     <!--[nzMode]="i === 0 ? 'default' : 'closeable'"-->

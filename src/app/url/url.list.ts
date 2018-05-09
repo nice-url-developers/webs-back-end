@@ -5,10 +5,11 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class RandomUserService {
   randomUserUrl = 'http://140.143.242.232:8080/urlrecord/';
 
-  getUsers(pageIndex = 1, pageSize = 10, sortField, sortOrder, genders) {
+  getUsers(pageIndex = 1, pageSize = 10, sortField, sortOrder, genders, search) {
     let params = new HttpParams()
       .append('page', `${pageIndex}`)
       .append('size', `${pageSize}`)
+      .append('name', `${search}`)
       .append('sortField', sortField)
       .append('sortOrder', sortOrder);
     genders.forEach(gender => {
@@ -85,6 +86,7 @@ export class NzDemoTableAjaxComponent implements OnInit {
   _dataSet = [];
   _loading = true;
   _sortValue = null;
+  _search = '';
   _filterGender = [
     { name: 'male', value: false },
     { name: 'female', value: false }
@@ -111,7 +113,8 @@ export class NzDemoTableAjaxComponent implements OnInit {
     }
     this._loading = true;
     const selectedGender = this._filterGender.filter(item => item.value).map(item => item.name);
-    this._randomUser.getUsers(this._current, this._pageSize, 'name', this._sortValue, selectedGender).subscribe((result: any) => {
+    this._randomUser.getUsers(this._current, this._pageSize, 'name', this._sortValue, selectedGender, this._search)
+      .subscribe((result: any) => {
       this._loading = false;
       this._total = result.total;
       this._dataSet = result.data;
