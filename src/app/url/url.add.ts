@@ -17,7 +17,9 @@ export class NzUrlFormHorizontalComponent implements OnInit {
 
   _submitForm() {
     for (const i in this.validateForm.controls) {
-      this.validateForm.controls[ i ].markAsDirty();
+      if (this.validateForm.controls.hasOwnProperty(i)) {
+        this.validateForm.controls[ i ].markAsDirty();
+      }
     }
   }
 
