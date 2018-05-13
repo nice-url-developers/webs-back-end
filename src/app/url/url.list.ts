@@ -3,8 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class RandomUserService {
-  randomUserUrl = 'http://140.143.242.232:8080/urlrecord/';
-
+  randomUserUrl = 'http://192.168.1.9:8080/urlrecord/';
+  // randomUserUrl = 'http://140.143.242.232:8080/urlrecord/';
   getUsers(pageIndex = 1, pageSize = 10, sortField, sortOrder, genders, search) {
     let params = new HttpParams()
       .append('page', `${pageIndex}`)
@@ -44,8 +44,12 @@ import { Component, OnInit } from '@angular/core';
       <thead nz-thead>
         <tr>
           <th nz-th>
+            <span>ID</span>
+            <nz-table-sort (nzValueChange)="sort('id',$event)"></nz-table-sort>
+          </th>
+          <th nz-th>
             <span>Name</span>
-            <nz-table-sort (nzValueChange)="sort($event)"></nz-table-sort>
+            <nz-table-sort (nzValueChange)="sort('name',$event)"></nz-table-sort>
           </th>
           <th nz-th>
             <span>Gender</span>
@@ -64,11 +68,14 @@ import { Component, OnInit } from '@angular/core';
               </div>
             </nz-dropdown>
           </th>
-          <th nz-th><span>Email</span></th>
+          <th nz-th><span>URL</span></th>
         </tr>
       </thead>
       <tbody nz-tbody>
         <tr nz-tbody-tr *ngFor="let data of nzTable.data">
+          <td nz-td>
+            <a>{{data.id}}</a>
+          </td>
           <td nz-td>
             <a>{{data.name}}</a>
           </td>
@@ -85,6 +92,7 @@ export class NzDemoTableAjaxComponent implements OnInit {
   _total = 1;
   _dataSet = [];
   _loading = true;
+  _sortField = null;
   _sortValue = null;
   _search = '';
   _filterGender = [
@@ -92,7 +100,8 @@ export class NzDemoTableAjaxComponent implements OnInit {
     { name: 'female', value: false }
   ];
 
-  sort(value) {
+  sort(name, value) {
+    this._sortField = name;
     this._sortValue = value;
     this.refreshData();
   }
@@ -113,7 +122,7 @@ export class NzDemoTableAjaxComponent implements OnInit {
     }
     this._loading = true;
     const selectedGender = this._filterGender.filter(item => item.value).map(item => item.name);
-    this._randomUser.getUsers(this._current, this._pageSize, 'name', this._sortValue, selectedGender, this._search)
+    this._randomUser.getUsers(this._current, this._pageSize, this._sortField, this._sortValue, selectedGender, this._search)
       .subscribe((result: any) => {
       this._loading = false;
       this._total = result.total;

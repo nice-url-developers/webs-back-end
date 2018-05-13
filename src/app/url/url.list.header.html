@@ -1,16 +1,19 @@
 <nz-layout style="background: white">
-  <div nz-row style="padding: 0px 5px 5px 0px">
-    <div nz-col [nzSpan]="6"  >
+  <div nz-row >
+    <div nz-col [nzSpan]="6"  style="margin-bottom: 10px">
       <nz-input  [nzType]="'search'" [nzPlaceHolder]="'搜索名称'" [(ngModel)]="search" style="" (nzOnSearch)="onSearch($event)"></nz-input>
     </div>
 
-    <button nz-col [nzSpan]="4" [nzOffset]="13" nz-button [nzType]="'primary'" (click)="taggleBox()">
+    <button nz-col [nzSpan]="4"  [nzOffset]="13" nz-button [nzType]="'primary'"
+            [style.margin-top]="isSpecial ? '10px' : '0px' "
+            [style.margin-bottom]="isSpecial ? '0px' : '10px' "
+            [style.border-radius]="isSpecial ? '4px 4px 0px 0px ':'4px'" (click)="taggleBox()">
       <i class="anticon anticon-plus-circle-o"></i><span>添加</span>
     </button>
   </div>
 
 
-<div id="box"  [@heroState]="Boxstate" >
+<div id="box"  [@boxState]="Boxstate" >
   <nz-url-form-horizontal></nz-url-form-horizontal>
   <div nz-col [nzSpan]="12" >
 

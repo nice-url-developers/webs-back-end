@@ -1,7 +1,7 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import * as moment from 'moment';
 import {b} from '@angular/core/src/render3';
-import {animate, state, style, transition, trigger} from '@angular/animations';
+import {animate, group, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'nz-datepicker-disable-date',
@@ -13,39 +13,45 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     }`,
       `#box {
       overflow: hidden;
+      margin: 0px 0px 5px;
+      border-radius: 5px;
+      border: 1px solid #fff;
     }
+
     #box div {
       overflow: hidden;
       padding: 5px;
     }`
   ],
   animations: [
-    trigger('heroState', [
-      state('inactive', style({height : 0})),
-      state('active', style({height : '*'})),
-      state('void', style({height : '*' })),
-      transition('inactive => active', animate('300ms ease-in')),
-      transition('active => inactive', animate('300ms ease-out')),
-    /*  /!*非激活进场*!/
-      transition('void => inactive', [
-        style({transform: 'translateX(-100%) scale(1)'}),
-        animate(100)
+    trigger('boxState', [
+      state('inactive', style({height: 0})),
+      state('active', style({height: '*', border: '1px solid #108ee9'})),
+      state('void', style({height: '*',  border: '1px solid #fff'})),
+      transition('inactive => active',
+        [
+          group([
+            animate('0.3s ease-in', style({
+              // width: 10
+              height: '*'
+            })),
+            animate('0.3s 0.2s ease', style({
+              border: '1px solid #108ee9'
+            }))
+          ])
+        ]),
+      transition('active => inactive', [
+        group([
+          animate('0.3s ease-out', style({
+            // width: 10
+            height: '0'
+          })),
+          animate('0.3s 0.2s ease', style({
+            border: '1px solid #fff'
+          }))
+        ])
       ]),
-      /!*非激活离场*!/
-      transition('inactive => void', [
-        animate(100, style({transform: 'translateX(100%) scale(1)'}))
-      ]),
-      /!*激活进场*!/
-      transition('void => active', [
-        style({transform: 'translateX(0) scale(0)'}),
-        animate(200)
-      ]),
-      /!*激活离场*!/
-      transition('active => void', [
-        style({height : 0}),
-        animate(200, style({height : 100}))
-      ])*/
-    ])
+    ]),
   ]
 })
 export class NzUrlListHeaderComponent {
@@ -73,7 +79,7 @@ export class NzUrlListHeaderComponent {
   ];
 
   taggleBox(): void {
-    this.isSpecial = !this.isSpecial;
+    this.isSpecial = this.isSpecial === false ? true : false;
     this.Boxstate = this.Boxstate === 'active' ? 'inactive' : 'active';
   }
 }
