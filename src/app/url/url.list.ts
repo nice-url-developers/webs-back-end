@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class RandomUserService {
-  randomUserUrl = 'http://192.168.1.9:8080/urlrecord/';
+  randomUserUrl = 'http://127.0.0.1:8080/urlrecord/';
   // randomUserUrl = 'http://140.143.242.232:8080/urlrecord/';
   getUsers(pageIndex = 1, pageSize = 10, sortField, sortOrder, genders, search) {
     let params = new HttpParams()

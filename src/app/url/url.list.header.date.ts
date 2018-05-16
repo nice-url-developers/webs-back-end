@@ -62,7 +62,17 @@ export class NzUrlListHeaderComponent {
   isSpecial = false;
   Boxstate = 'inactive';
   _tags = ['Unremovable', 'Tag 2', 'Tag 3'];
-
+  selectedIndex = 0;
+  tabs = [
+    {
+      name    : '常规',
+      disabled: false,
+    },
+    {
+      name    : '高级搜索',
+      disabled: false
+    }
+  ];
 
   panels = [
     {

@@ -1,35 +1,56 @@
 <nz-layout style="background: white">
-  <div nz-row >
-    <div nz-col [nzSpan]="6"  style="margin-bottom: 10px">
-      <nz-input  [nzType]="'search'" [nzPlaceHolder]="'搜索名称'" [(ngModel)]="search" style="" (nzOnSearch)="onSearch($event)"></nz-input>
-    </div>
 
-    <button nz-col [nzSpan]="4"  [nzOffset]="13" nz-button [nzType]="'primary'"
-            [style.margin-top]="isSpecial ? '10px' : '0px' "
-            [style.margin-bottom]="isSpecial ? '0px' : '10px' "
-            [style.border-radius]="isSpecial ? '4px 4px 0px 0px ':'4px'" (click)="taggleBox()">
-      <i class="anticon anticon-plus-circle-o"></i><span>添加</span>
-    </button>
-  </div>
+  <nz-tabset>
+    <!--<nz-tab *ngFor="let tab of tabs"-->
+            <!--[nzDisabled]="tab.disabled">-->
+      <!--<ng-template #nzTabHeading>-->
+        <!--{{tab.name}}-->
+      <!--</ng-template>-->
+      <!--<span>{{tab.content}}</span>-->
+    <!--</nz-tab>-->
 
 
-<div id="box"  [@boxState]="Boxstate" >
-  <nz-url-form-horizontal></nz-url-form-horizontal>
-  <div nz-col [nzSpan]="12" >
 
-    <nz-input [nzType]="'text'" [nzPlaceHolder]="'Enter your userName'">
-      <ng-template #prefix>
-        <i class="anticon anticon-user"></i>
+    <nz-tab >
+      <ng-template #nzTabHeading>
+      {{tabs[0].name}}
       </ng-template>
-    </nz-input>
+      <div nz-row >
+        <div nz-col [nzSpan]="6"  style="margin-bottom: 10px">
+          <nz-input  [nzType]="'search'" [nzPlaceHolder]="'搜索名称'" [(ngModel)]="search" style="" (nzOnSearch)="onSearch($event)"></nz-input>
+        </div>
 
-  <input nz-input placeholder="Basic usage" [(ngModel)]="value">
-  <input nz-input placeholder="Basic usage" [(ngModel)]="value">
-  </div>
-  <div nz-col [nzSpan]="12" >
+        <button nz-col [nzSpan]="4"  [nzOffset]="13" nz-button [nzType]="'primary'"
+                [style.margin-top]="isSpecial ? '10px' : '0px' "
+                [style.margin-bottom]="isSpecial ? '0px' : '10px' "
+                [style.border-radius]="isSpecial ? '4px 4px 0px 0px ':'4px'" (click)="taggleBox()">
+          <i class="anticon anticon-plus-circle-o"></i><span>添加</span>
+        </button>
+      </div>
 
-  </div>
-</div>
+
+      <div id="box"  [@boxState]="Boxstate" >
+        <nz-url-form-horizontal></nz-url-form-horizontal>
+      </div>
+    </nz-tab>
+
+
+    <nz-tab>
+      <ng-template #nzTabHeading>
+        {{tabs[1].name}}
+      </ng-template>
+
+安生点
+    </nz-tab>
+
+
+
+
+
+
+  </nz-tabset>
+
+
   <!--[style.display]="isSpecial ? 'block' : 'none'"-->
   <!--<nz-input-group>分类 <nz-tag-->
     <!--*ngFor="let tag of tags; let i = index;"-->
