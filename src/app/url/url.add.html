@@ -40,8 +40,12 @@
       <label for="icon" nz-form-item-required>Icon</label>
     </div>
     <div nz-form-control nz-col [nzSm]="14" [nzXs]="20" nzHasFeedback>
-      <IMG [src]='urlIcon'><nz-input [nzSize]="'large'" formControlName="icon" [nzId]="'icon'" >{{urlText}}</nz-input>
-      <div nz-form-explain *ngIf="getFormControl('icon').dirty&&getFormControl('icon').hasError('icon')">icon 地址</div>
+
+      <nz-input [nzSize]="'large'" formControlName="icon" [nzId]="'icon'" >{{urlText}}
+        <ng-template >  <IMG [src]='urlIcon'></ng-template>
+      </nz-input>
+      <div nz-form-explain *ngIf="getFormControl('icon').dirty&&getFormControl('icon').hasError('icon')"></div>
+      <IMG [src]='urlIcon'>
     </div>
   </div>
   <div nz-form-item nz-row>

@@ -141,7 +141,7 @@ export class NzUrlFormHorizontalComponent implements OnInit {
   }
 
   getDomain(weburl) {
-    const urlReg = /https:\/\/([^\/]+)/i;
+    const urlReg = /http(.*):\/\/([^\/]+)/i;
     const wr = weburl.match(urlReg);
     return ((wr != null && wr.length > 0) ? wr[0] : '');
   }
